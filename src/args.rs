@@ -11,6 +11,9 @@ pub struct Args {
 pub enum Commands {
     /// Initilize a new project inside current directory
     Init {
+        /// Project name (default is the name of current directory)
+        name: Option<String>,
+
         /// Creates new library
         #[arg(long)]
         lib: bool,

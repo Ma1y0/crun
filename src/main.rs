@@ -1,11 +1,21 @@
 use clap::Parser;
-use crun::{Args, Commands};
+use crun::{compile, config::Config, init, run, Args, Commands, Result};
 
-fn main() {
+fn main() -> Result<()> {
     let args = Args::parse();
+    let config = Config::read_from_file()?;
 
-    match args.command {
-        Commands::Init { .. } => println!("Die"),
+    let res = match args.command {
+        Commands::Init { name, lib, .. } => init::init_project(name, lib),
+        Commands::Build => compile::compile(&config),
+        Commands::Run => run::run(&config),
         _ => todo!("AAA"),
-    }
+    };
+
+    match res {
+        Ok(()) => println!("OK"),
+        Err(e) => println!("{}", e),
+    };
+
+    Ok(())
 }

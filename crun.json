@@ -1,0 +1,8 @@
+{
+  "project_name": "crun",
+  "version": "0.1.0",
+  "description": null,
+  "CC": "clang",
+  "CFLAGS": ["-Wall"]
+}
+
